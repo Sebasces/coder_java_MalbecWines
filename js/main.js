@@ -1,4 +1,6 @@
 
+/* OBJETOS */
+
 class usuario {
     constructor (nombre, apellido, edad) {
     this.nombre = nombre;
@@ -7,13 +9,14 @@ class usuario {
 }}
 
 
-class Producto {
-    constructor (titulo, precio, stock,id)
+class producto {
+    constructor (titulo, precio, stock,id,img)
     {
     this.titulo = titulo;
     this.precio = Number(precio);
     this.stock =  stock;
     this.id = id;
+    this.img = img;
 }}
 
 class tarjetaPago {  
@@ -25,22 +28,106 @@ class tarjetaPago {
     this.codigoSeguridad = codigoSeguridad;
     }}
 
-const productosArray = [];
-    const whisky = new Producto("whisky",7000,100,1);
-        productosArray.push(whisky);
-    const vino = new Producto("vino",1500,100,2);
-        productosArray.push(vino);
-    const gin = new Producto ("gin",3000,100,3);
-        productosArray.push(gin);
-    const champagne = new Producto("champagne",3200,100,4);
-        productosArray.push(champagne);
-    const vodka = new Producto ("vodka", 2100,100,5);
-        productosArray.push(vodka);
-    const ron = new Producto ("ron", 3500,100,6);
-        productosArray.push(ron);      
+const productos = [];
+    const whisky = new producto("whisky",7000,100,1,"../img/jackdaniels.jpeg");
+        productos.push(whisky);
+    const vino = new producto("vino",1500,100,2,"/img/vino_card.jpeg");
+        productos.push(vino);
+    const gin = new producto ("gin",3000,100,3,"./img/gin.png");
+        productos.push(gin);
+    const champagne = new producto("champagne",3200,100,4,"./img/champagne.jpeg");
+        productos.push(champagne);
+    const vodka = new producto ("vodka", 2100,100,5,"./img/voddka.jpeg");
+        productos.push(vodka);
+    const ron = new producto ("ron", 3500,100,6,);
+        productos.push(ron);      
+
+console.log(productos);
+const containerProductos = document.getElementById("containerCard");
+const verCarrito = document.getElementById("verCarrito");
+const containerCarrito = document.getElementById("containerCarrito");
+
+let carrito = [];
+/*const titulo= document.createElement("div")
+    titulo.innerHTML =`
+        <h2>Estos son nuestros Productos</h2>`;
+    containerProductos.append (titulo);*/
 
 
-let medioPago;
+productos.forEach((producto) => {
+let cardCreator = document.createElement("div");
+cardCreator.className = "cardProducto"
+cardCreator.innerHTML = `
+    <img src=${producto.img}/>
+    <h3>${producto.titulo}</h3>
+    <p>${"precio $"+producto.precio}</p>
+    `;
+containerProductos.append (cardCreator);
+
+let agregarCarrito= document.createElement("button");
+agregarCarrito.innerText = "agregar a carrito";
+cardCreator.append (agregarCarrito);
+
+agregarCarrito.addEventListener("click", () => {carrito.push({
+    id: producto.id,
+    titulo: producto.titulo,
+    precio: producto.precio,
+    img: producto.img,
+}); console.log(carrito);});
+
+})
+
+verCarrito.addEventListener("click", () => {
+    
+    const carritoHead = document.createElement("div");
+    carritoHead.className = "carritoHead";
+    carritoHead.innerHTML = `
+        <h2 id="carritoHeadtitle">Tu compra</h2>
+        `;
+    
+    containerCarrito.append(carritoHead)
+
+    const salirCarrito = document.createElement("button")
+    salirCarrito.innerText ="X"
+    carritoHead.append(salirCarrito)
+
+    carrito.forEach((producto) => {
+    let carritoBody = document.createElement("div")
+    carritoBody.className = "carritoBody"
+    carritoBody.innerHTML = `
+    <img src=${producto.img}/>
+    <h3>${producto.titulo}</h3>
+    <p>${"precio $"+producto.precio}</p>
+    `
+    containerCarrito.append(carritoBody);
+        
+    })
+    
+    const total = carrito.reduce((acc, producto) => acc + producto.precio, 0);
+
+    const  totalCarrito = document.createElement("div")
+    totalCarrito.className ="totalCarrito"
+    totalCarrito.innerHTML = `
+        <h3> ${"El total de su compra es $"+ total}</h3>`
+
+    containerCarrito.append (totalCarrito);
+}
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*let medioPago;
 let opcionError = false;
 
 const sumar = function (n1,n2) {
@@ -112,4 +199,4 @@ let iniciarCompra;
                                 mesVencimiento = Number (prompt ("Ingrese la fecha de vencimiento MMAA")),
                                 codigoSeguridad = Number(prompt ("Ingrese el Codigo Seguridad")));
                                 consulta(tarjetaPago1)
-                                alert("Gracias. estamos procesando su compra en la proxima pre-entrega recibira la confirmacion de la misma")}};
+                                alert("Gracias. estamos procesando su compra en la proxima pre-entrega recibira la confirmacion de la misma")}};*/
