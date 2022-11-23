@@ -53,17 +53,17 @@ class producto {
 
 
 const productos = [];
-    const whisky = new producto("whisky",7000,100,1,"/Users/sebastiancescosta/Desktop/Proyecto-coder-java/img/jackdaniels.jpeg");
+    const whisky = new producto("whisky",7000,100,1,"img/jackdaniels.jpeg");
         productos.push(whisky);
-    const vino = new producto("vino",1500,100,2,"/Users/sebastiancescosta/Desktop/Proyecto-coder-java/img/vino_card.jpeg");
+    const vino = new producto("vino",1500,100,2,"img/vino_card.jpeg");
         productos.push(vino);
-    const gin = new producto ("gin",3000,100,3,"/Users/sebastiancescosta/Desktop/Proyecto-coder-java/img/gin.png");
+    const gin = new producto ("gin",3000,100,3,"img/gin.png");
         productos.push(gin);
-    const champagne = new producto("champagne",3200,100,4,"/Users/sebastiancescosta/Desktop/Proyecto-coder-java/img/champagne.jpeg");
+    const champagne = new producto("champagne",3200,100,4,"img/champagne.jpeg");
         productos.push(champagne);
-    const vodka = new producto ("vodka", 2100,100,5,"/Users/sebastiancescosta/Desktop/Proyecto-coder-java/img/voddka.jpeg");
+    const vodka = new producto ("vodka", 2100,100,5,"img/voddka.jpeg");
         productos.push(vodka);
-    const ron = new producto ("ron", 3500,100,6,"/Users/sebastiancescosta/Desktop/Proyecto-coder-java/img/ron.jpeg");
+    const ron = new producto ("ron", 3500,100,6,"img/ron.jpeg");
         productos.push(ron);      
 
 
