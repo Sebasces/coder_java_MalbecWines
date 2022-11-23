@@ -1,3 +1,23 @@
+
+.formularioUser{
+    width:100%; 
+    color:rgb(224, 245, 245);
+    height: auto;
+    background-color: black;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow: auto;
+    
+
+}
+
+
+
+
 #containerCard{
     width: 100%;
     height: auto;
@@ -7,7 +27,13 @@
     align-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    
+ 
+
+}
+
+.cimg{
+    width:90%;
+height:30em;
 }
 
 .cardProducto {
@@ -20,18 +46,39 @@
     align-items: center;
 }
 
+.cardProducto > img{
+    width:8em;
+    Height:8em;
+}
+
+
 #verCarrito{
-    width:4em;
-    height: 4em;
+    width:3em;
+    height: 3em;
 
 }
 
 #containerCarrito {
+    width:70%; 
+    height: auto;
+    margin: 2em 10em;
+    background-color: whitesmoke;
     display:flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: center;
     align-items: center;
-    width: 80%;
-    height: auto;
+    position:absolute;
+    overflow: auto;
+    z-index: 9;
+    top:12em;
+    scrollbar-color: grey;
+}
+#containerCarrito::-webkit-scrollbar {
+    display:none;
+}
+
+
+.carritoBody > img {
+    width: 6em;
+    height: 6em;
 }
