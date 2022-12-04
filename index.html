@@ -24,20 +24,9 @@
                   <li class="nav-item">
                     <a class="nav-link" href="#">Tienda</a>
                   </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Acción</a></li>
-                      <li><a class="dropdown-item" href="#">Otra acción</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Algo más aquí</a></li>
-                    </ul>
-                  </li>
                 </ul>
-                <div> 
-                    <img id="verCarrito" src="./img/shopping-cart-icon.png" alt="">
+                <div id="carrito"> 
+                    <img id="verCarrito" src="./img/carrito.jpeg" alt=""><span id="indicadorCarrito"> </span>
                   </a>
                 </div>
               </div>
@@ -45,7 +34,6 @@
           </nav>
     </header>
     <main id="mainId">
-       
         <h1>MALBEC WINES </h1>
         <div id="registro"></div>
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -70,14 +58,19 @@
   </button>
 </div>
 <div class="formularioUser">
+  <h2>Inicie sesion</h2>
   Nombre<input type="text" name="nombre" id="nombre"><br>
   Apellido<input type="text" name="apellido" id="apellido"><br>
   <button type="submit" id="enviar">enviar</button>
+  <p id="registracion">sino registrese aqui</p>
+</div>
+<div id="finalizarTransaccion">
 </div>
 <div id="containerCard" class="container-fluid">
 </div>
-<div id="containerCarrito" class="">
+<div id="containerCarrito">
 </div>
+
     </main>
     <footer>
 
