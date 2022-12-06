@@ -9,6 +9,7 @@ const registroUsuario= []
 
 
 let ingresoUsuario = enviar.addEventListener("click",() => { 
+        cardCreator.style.display ="block"
         let usuario= {
         nombre: inputNombre.value,
         apellido:inputApellido.value};
@@ -75,8 +76,6 @@ let verCarrito = document.getElementById("verCarrito");
 const containerCarrito = document.getElementById("containerCarrito");
 const indicadorCarrito = document.getElementById("indicadorCarrito");
 
-
-
 let carrito = JSON.parse (localStorage.getItem('carrito')) || [];
 
 
@@ -117,6 +116,7 @@ localStorage.setItem ('carrito',JSON.stringify(carrito));
 });
 
 //carrito//
+    
     const iniciarCarrito = () => {
         
     containerCarrito.innerHTML ="";

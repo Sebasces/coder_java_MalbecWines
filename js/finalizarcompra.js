@@ -50,16 +50,20 @@
                 <option value="19"> 2025</option>
                 <option value="20"> 2026</option>
             </select>
+            <div>
+                <button type="submit">Pagar</button>
+            </div>
             </form>
             </div>
             `
             finalizarTransaccion.append(mediodePago)
-        const enviarPago = document.createElement ("div")
+
+        /*const enviarPago = document.createElement ("div")
         enviarPago.innerHTML=`
             <button type="submit"  id="confirmPago">Pagar</button>`
-            mediodePago.append(enviarPago);
+            mediodePago.append(enviarPago);*/
         
-        enviarPago.addEventListener("click", () =>{
+        mediodePago.addEventListener("click", () =>{
             
             const compraRealizada = document.createElement ("div")
             compraRealizada.style.display ="block";
