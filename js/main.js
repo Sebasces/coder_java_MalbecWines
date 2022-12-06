@@ -95,7 +95,8 @@ agregarCarrito.innerText = "agregar a carrito";
 cardCreator.append (agregarCarrito);
 
 agregarCarrito.addEventListener("click", () => {
-    /*if (usuario === undefined)*/
+
+    
     const sumarCantidad = carrito.some ((sumarCantidadProducto)=> sumarCantidadProducto.id === producto.id);
 
     if (sumarCantidad) {carrito.map ((prod) => {if (prod.id === producto.id) {prod.cantidad++;
@@ -182,7 +183,6 @@ localStorage.setItem ('carrito',JSON.stringify(carrito));
     })
     
     const total = carrito.reduce((acc, producto) => acc + producto.precio * producto.cantidad, 0);
-
     const  totalCarrito = document.createElement("div")
     totalCarrito.className ="totalCarrito"
     totalCarrito.innerHTML = `
@@ -190,21 +190,17 @@ localStorage.setItem ('carrito',JSON.stringify(carrito));
         `
     containerCarrito.append (totalCarrito);
     
-    const finalizarTransaccion= document.getElementById("finalizarTransaccion");
-    const continuarCompra = document.createElement("button")
+    const continuarCompra = document.createElement("a")
     continuarCompra.innerText ="confirmar compra"
     continuarCompra.className = "continuarCompra"
     totalCarrito.append(continuarCompra)
-    continuarCompra.addEventListener("click",() => {
-        containerCarrito.style.display= "none"
-        const mediodePago = document.createElement("div")
-        mediodePago.className = "mediodePago"
-        mediodePago.innerHTML = `
-        <h2>${"Confirmación de Compra"}</h2>
-        <p>${"el monto total a pagar es"+" " + total}</p>
-        `
-    finalizarTransaccion.append(mediodePago);
-    })
+    continuarCompra.addEventListener("click",() => {if(total >1) {
+        console.log(total)
+        containerCarrito.style.display= "none";
+        localStorage.setItem ('totalCompra',JSON.stringify(total))
+        window.location.href="./finalizarcompra.html";
+        
+    }})
 }
     carritoInicia()
     const eliminarProducto = () => {
