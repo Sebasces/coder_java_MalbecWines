@@ -8,7 +8,7 @@ const registro=document.getElementById("registro")
 const registroUsuario= []
 
 
-/* Producto */
+/* OBJETOS */
 
 
 class producto {
@@ -47,6 +47,7 @@ const indicadorCarrito = document.getElementById("indicadorCarrito");
 
 let carrito = JSON.parse (localStorage.getItem('carrito')) || [];
 
+
 productos.forEach((producto) => {
 let cardCreator = document.createElement("div");
 cardCreator.className = "cardProducto"
@@ -55,9 +56,10 @@ cardCreator.innerHTML = `
     <h3>${producto.titulo}</h3>
     <p>${"precio $"+producto.precio}</p>
     `;
+
 containerProductos.append (cardCreator);
 
-//Ingreso Usuario-Validacion//
+
 let ingresoUsuario = enviar.addEventListener("click",() => { 
     let usuario= {
     nombre: inputNombre.value,
@@ -86,14 +88,13 @@ cardCreator.append (agregarCarrito);
 
 agregarCarrito.addEventListener("click", () => {
     let user = JSON.parse (localStorage.getItem('infoUsuario'))
-    if (user == null) {
-        swal({
-            title: "UD NO SE HA REGISTRADO",
-            text: "Debera registrarse antes de operar en la pagina",
-            icon: "error",
-            button: "cerrar",});
-
-    } else {
+    if (user == null) {{ swal({
+        title: "Registración rechazada",
+        text: "Ud. no se ha registrado correctamente" + " ",
+        icon: "warning",
+        button: "cerrar",
+    })}} else {
+    
     const sumarCantidad = carrito.some ((sumarCantidadProducto)=> sumarCantidadProducto.id === producto.id);
 
     if (sumarCantidad) {carrito.map ((prod) => {if (prod.id === producto.id) {prod.cantidad++;
@@ -108,7 +109,7 @@ agregarCarrito.addEventListener("click", () => {
     cantidad:producto.cantidad,
     
 }); 
-}
+}}
 carritoIndex ();
 localStorage.setItem ('carrito',JSON.stringify(carrito));
 Toastify({
@@ -118,7 +119,7 @@ Toastify({
     duration: 800
 
     
-    }).showToast();}
+    }).showToast();
 });
 });
 
@@ -126,8 +127,7 @@ Toastify({
     
     const iniciarCarrito = () => {
     
-        
-        
+    
     containerCarrito.innerHTML ="";
     let user = JSON.parse (localStorage.getItem('infoUsuario'));
     const carritoHead = document.createElement("div");
@@ -135,9 +135,15 @@ Toastify({
     carritoHead.innerHTML = `
         <h2 id="carritoHeadtitle">${user.nombre+ " " + user.apellido + " " + "tu selección es"}</h2>
         `;
+    containerCarrito.style.display= "flex"
     containerCarrito.append(carritoHead)
 
-    
+    const salirCarrito = document.createElement("button")
+    salirCarrito.innerText ="cerrar ventana"
+    carritoHead.append(salirCarrito)
+    salirCarrito.addEventListener("click",() => {
+        containerCarrito.style.display= "none";
+    })
 
     carrito.forEach((producto) => {
     let carritoBody = document.createElement("div")
@@ -189,9 +195,7 @@ Toastify({
     const  totalCarrito = document.createElement("div")
     totalCarrito.className ="totalCarrito"
     totalCarrito.innerHTML = `
-        <div>
         <h3> ${"El total de tu compra es $"+ total}</h3>
-        </div>
         `
     containerCarrito.append (totalCarrito);
     
@@ -206,12 +210,6 @@ Toastify({
         window.location.href="./finalizarcompra.html";
         
     }})
-    const salirCarrito = document.createElement("button")
-    salirCarrito.innerText ="cerrar ventana"
-    totalCarrito.append(salirCarrito)
-    salirCarrito.addEventListener("click",() => {
-        containerCarrito.style.display= "none";
-    })
 }
     carritoInicia()
     const eliminarProducto = () => {
@@ -231,7 +229,7 @@ Toastify({
 
 }
 
-carritoIndex ();
+carritoIndex();
 
 function carritoInicia() {
     verCarrito.addEventListener("click", iniciarCarrito)
