@@ -12,11 +12,11 @@
             <form id="formTarjeta">
             <div class="form-group owner">
             <label for="owner">Titular de la Tarjeta</label>
-            <input type="text" class="form-control" id="owner">
+            <input type="text" class="form-control" id="titular">
         </div>
         <div>
         <label for="owner">Correo electrónico</label>
-            <input type="text" class="form-control" id="owner">
+            <input type="text" class="form-control" id="correotitular">
         </div>
 
         <div class="form-group CVV">
@@ -25,11 +25,11 @@
         </div>
         <div class="form-group" id="card-number-field">
             <label for="cardNumber">Número de Tarjeta</label>
-            <input type="text" class="form-control" id="cardNumber">
+            <input type="text" class="form-control" id="numeroTarjeta">
         </div>
         <div class="form-group" id="expiration-date">
             <label>Mes de Expiración</label>
-            <select>
+            <select id="mes">
                 <option value="01">Enero</option>
                 <option value="02">Febrero</option>
                 <option value="03">Marzo</option>
@@ -43,7 +43,7 @@
                 <option value="11">Noviembre</option>
                 <option value="12">Diciembre</option>
             </select>
-            <select>
+            <select id="año">
                 <option value="16"> 2022</option>
                 <option value="17"> 2023</option>
                 <option value="18"> 2024</option>
@@ -51,38 +51,54 @@
                 <option value="20"> 2026</option>
             </select>
             <div>
-                <button type="submit">Pagar</button>
+                <button id="btn-Pagar" type="submit">Pagar</button>
             </div>
+            
             </form>
             </div>
             `
             finalizarTransaccion.append(mediodePago)
-
-        /*const enviarPago = document.createElement ("div")
-        enviarPago.innerHTML=`
-            <button type="submit"  id="confirmPago">Pagar</button>`
-            mediodePago.append(enviarPago);*/
-        
-        mediodePago.addEventListener("click", () =>{
+            const btnPagar = document.querySelector("#btn-Pagar")
+            btnPagar.addEventListener("click", validarFormulario) 
+           
             
+            
+            /*let titularTarjeta = document.getElementById("titularTarjeta")
+            let correoTitular = document.getElementById("correoTitular")
+            let codigoSeguridad = document.getElementById("cvv")
+            let numeroTarjeta = document.getElementById("numeroTarjeta")
+            let expiracionMes = document.getElementById("mes")
+            let expiracionAño = document.getElementById("año")
+
+            let datosTarjetaUser = {
+            titular: titularTarjeta.value, 
+            mail: correoTitular.value,
+            codigo: codigoSeguridad.value,
+            numero: numeroTarjeta.value,
+            expiracionmes: expiracionMes.value,
+            expiracionaño: expiracionAño.value, 
+            }*/
+
+            function validarFormulario (e) {
+            e.preventDefault ();
             const compraRealizada = document.createElement ("div")
             compraRealizada.style.display ="block";
             compraRealizada.style.textAlign="center";
-            compraRealizada.style.textAlign="center";
-            compraRealizada.style.display="flex"; 
+            compraRealizada.style.textAlign="center"; 
             compraRealizada.style.position="fixed";
             compraRealizada.style.alignItems="center"; 
             compraRealizada.style.width= "30em"; 
             compraRealizada.style.zIndex="40";
-            compraRealizada.style.height="5em";
+            compraRealizada.style.height="auto";
             compraRealizada.style.backgroundColor="white";
             compraRealizada.style.marginLeft= "25em";
+            compraRealizada.style.backgroundColor="grey";
             compraRealizada.style.color="black";
-            compraRealizada.className = "mensajeConfirmación"
+            compraRealizada.className = "CompraRealizadaMessage"
             compraRealizada.innerHTML =`
-                <h3>Hemos registrado su solicitud, en momentos recibira un e-mail de confirmación</h3>`; 
+            <h3>Hemos registrado su solicitud, en momentos recibira un e-mail de confirmación</h3>`; 
             finalizarTransaccion.append(compraRealizada);
-        
+            
             const cerrarVentana = document.createElement("button")
             cerrarVentana.innerText ="X"
             compraRealizada.append(cerrarVentana)
@@ -91,8 +107,8 @@
             cerrarCompra.style.display="none"
             localStorage.clear()
             window.location.href="./index.html"
-            
-    })})
+            compraRealizada.append(cerrarVentana)
+            })}
         
         
         const detalleCompra =document.getElementById("detalleCompra")
@@ -109,7 +125,18 @@
             `
         detalleCompra.append(finalizarCompra)})
         
-        
+        let dataInfo = document.getElementById('dataInfo')
+
+    fetch('https://www.dolarsi.com/api/api.php?type=valoresprincipales')
+    .then(resp => resp.json())
+    .then(data => {
+        console.log(data[0].casa.compra)
+        const cotizacion = document.createElement('div');
+            cotizacion.innerHTML += `
+            <p>cotización:${"dolar oficial"}, valor: ${data[0].casa.venta}, ${"para el pago en dolares"}</p>`
+            dataInfo.append(cotizacion);
+    
+    })
         /*const volveraCarrito = document.createElement("a");
         volveraCarrito.innerText = "Anular operación y Volver al inicio";
         detalleCompra.append  (volveraCarrito)
