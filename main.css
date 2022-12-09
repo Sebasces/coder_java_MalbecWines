@@ -79,7 +79,7 @@ height:30em;
     color:  rgb(70, 70, 71);
     text-shadow: 0.2px;
     scrollbar-color: rgb(70, 70, 71);
-    opacity: 0.8;
+    opacity: 0.9;
 
 }
 #containerCarrito::-webkit-scrollbar {
@@ -100,6 +100,12 @@ height:30em;
 .continuarCompra {
     background-color: green;
     color:whitesmoke;
+    text-decoration: none;
+    border: 0.1em;
+    border-color: black;
+    border-radius: 0.2em;
+    cursor: pointer;
+    border-style: solid;
 }
 
 #carrito {
@@ -185,4 +191,15 @@ height:30em;
     color:white;
     background-color: grey;
     border-radius: 0.5em;
+}
+
+#dataInfo{
+    width: auto;
+    height: auto;
+    background-color: white;
+    color: black;
+    font-style:normal;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: small;
+    text-align: center;
 }

@@ -8,37 +8,6 @@ const registro=document.getElementById("registro")
 const registroUsuario= []
 
 
-let ingresoUsuario = enviar.addEventListener("click",() => { 
-        cardCreator.style.display ="block"
-        let usuario= {
-        nombre: inputNombre.value,
-        apellido:inputApellido.value};
-        localStorage.setItem ('infoUsuario',JSON.stringify(usuario));
-        
-        const message= document.createElement("div")
-        message.innerHTML =`
-            <p>Bienvenido, Hemos registrado su Usuario</p>`;
-        registro.append(message);
-        message.style.textAlign="center";
-        message.style.display="flex"; 
-        message.style.position="fixed";
-        message.style.alignItems="center"; 
-        message.style.width= "30em"; 
-        message.style.zIndex="40";
-        message.style.height="5em";
-        message.style.backgroundColor="white";
-        message.style.marginLeft= "25em";
-        message.style.color="black";
-        const salirmessage = document.createElement("button")
-        salirmessage.innerText ="X"
-        message.append(salirmessage)
-        salirmessage.addEventListener("click",() => {
-        message.style.display= "none";
-        console.log(usuario)
-    })})
-
-
-
 /* OBJETOS */
 
 
@@ -78,7 +47,6 @@ const indicadorCarrito = document.getElementById("indicadorCarrito");
 
 let carrito = JSON.parse (localStorage.getItem('carrito')) || [];
 
-
 productos.forEach((producto) => {
 let cardCreator = document.createElement("div");
 cardCreator.className = "cardProducto"
@@ -89,13 +57,43 @@ cardCreator.innerHTML = `
     `;
 containerProductos.append (cardCreator);
 
+
+let ingresoUsuario = enviar.addEventListener("click",() => { 
+    let usuario= {
+    nombre: inputNombre.value,
+    apellido:inputApellido.value};
+    
+    if (inputNombre.value == "" || inputApellido.value == "") { swal({
+        title: "Registración rechazada",
+        text: "Ud. no se ha registrado correctamente" + " ",
+        icon: "warning",
+        button: "cerrar",
+    })}
+        else {
+    swal({
+        title: "Registración exitosa",
+        text: "Bienvenido" + " " +usuario.nombre + " "+ usuario.apellido,
+        icon: "success",
+        button: "cerrar",
+    });localStorage.setItem ('infoUsuario',JSON.stringify(usuario))}
+    
+})
+
+
 let agregarCarrito= document.createElement("button");
 agregarCarrito.innerText = "agregar a carrito";
 cardCreator.append (agregarCarrito);
 
 agregarCarrito.addEventListener("click", () => {
+    let user = JSON.parse (localStorage.getItem('infoUsuario'))
+    if (user.nombre == "undefined" ||  user.apellido == "undefined") {
+        swal({
+            title: "UD NO SE HA REGISTRADO",
+            text: "Debera registrarse antes de operar en la pagina",
+            icon: "error",
+            button: "cerrar",});
 
-    
+    } else {
     const sumarCantidad = carrito.some ((sumarCantidadProducto)=> sumarCantidadProducto.id === producto.id);
 
     if (sumarCantidad) {carrito.map ((prod) => {if (prod.id === producto.id) {prod.cantidad++;
@@ -108,19 +106,29 @@ agregarCarrito.addEventListener("click", () => {
     precio: producto.precio,
     img:producto.img,
     cantidad:producto.cantidad,
+    
 }); 
 }
 carritoIndex ();
 localStorage.setItem ('carrito',JSON.stringify(carrito));
+Toastify({
+
+    text: "agregaste un producto al carrito",
+    
+    duration: 800
+
+    
+    }).showToast();}
 });
 });
 
 //carrito//
     
     const iniciarCarrito = () => {
+    
+        
         
     containerCarrito.innerHTML ="";
-    containerCarrito.style.display= "flex";
     let user = JSON.parse (localStorage.getItem('infoUsuario'));
     const carritoHead = document.createElement("div");
     carritoHead.className = "carritoHead";
@@ -225,3 +233,6 @@ function carritoInicia() {
     verCarrito.addEventListener("click", iniciarCarrito)
 }
     
+
+
+
