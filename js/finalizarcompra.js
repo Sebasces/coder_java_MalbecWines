@@ -97,7 +97,7 @@
             compraRealizada.style.color="black";
             compraRealizada.className = "CompraRealizadaMessage"
             compraRealizada.innerHTML =`
-            <h3>Hemos registrado su solicitud, procesado el pago en momentos recibira un e-mail de confirmación</h3>`; 
+            <h3>Hemos registrado su solicitud, procesado el pago  recibira un e-mail de confirmación</h3>`; 
             finalizarTransaccion.append(compraRealizada);
             
             const cerrarVentana = document.createElement("button")
