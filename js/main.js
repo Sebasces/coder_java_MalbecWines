@@ -8,7 +8,7 @@ const registro=document.getElementById("registro")
 const registroUsuario= []
 
 
-/* OBJETOS */
+/* Producto */
 
 
 class producto {
@@ -57,7 +57,7 @@ cardCreator.innerHTML = `
     `;
 containerProductos.append (cardCreator);
 
-
+//Ingreso Usuario-Validacion//
 let ingresoUsuario = enviar.addEventListener("click",() => { 
     let usuario= {
     nombre: inputNombre.value,
@@ -86,7 +86,7 @@ cardCreator.append (agregarCarrito);
 
 agregarCarrito.addEventListener("click", () => {
     let user = JSON.parse (localStorage.getItem('infoUsuario'))
-    if (user.nombre == "undefined" ||  user.apellido == "undefined") {
+    if (user == null) {
         swal({
             title: "UD NO SE HA REGISTRADO",
             text: "Debera registrarse antes de operar en la pagina",
@@ -137,12 +137,7 @@ Toastify({
         `;
     containerCarrito.append(carritoHead)
 
-    const salirCarrito = document.createElement("button")
-    salirCarrito.innerText ="X"
-    carritoHead.append(salirCarrito)
-    salirCarrito.addEventListener("click",() => {
-        containerCarrito.style.display= "none";
-    })
+    
 
     carrito.forEach((producto) => {
     let carritoBody = document.createElement("div")
@@ -194,7 +189,9 @@ Toastify({
     const  totalCarrito = document.createElement("div")
     totalCarrito.className ="totalCarrito"
     totalCarrito.innerHTML = `
+        <div>
         <h3> ${"El total de tu compra es $"+ total}</h3>
+        </div>
         `
     containerCarrito.append (totalCarrito);
     
@@ -209,6 +206,12 @@ Toastify({
         window.location.href="./finalizarcompra.html";
         
     }})
+    const salirCarrito = document.createElement("button")
+    salirCarrito.innerText ="cerrar ventana"
+    totalCarrito.append(salirCarrito)
+    salirCarrito.addEventListener("click",() => {
+        containerCarrito.style.display= "none";
+    })
 }
     carritoInicia()
     const eliminarProducto = () => {
@@ -228,6 +231,7 @@ Toastify({
 
 }
 
+carritoIndex ();
 
 function carritoInicia() {
     verCarrito.addEventListener("click", iniciarCarrito)

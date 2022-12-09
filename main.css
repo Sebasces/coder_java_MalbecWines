@@ -10,8 +10,18 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
+    justify-content: space-around;
     overflow: auto;
     
+
+}
+
+#registraUser{
+
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
 
 }
 
@@ -87,7 +97,9 @@ height:30em;
 }
 
 
-.carritoBody {display: flex;
+.carritoBody {
+    margin-top: 2em;
+    display: flex;
     flex-direction: row;
     justify-content: space-evenly;}
     img {
@@ -101,11 +113,13 @@ height:30em;
     background-color: green;
     color:whitesmoke;
     text-decoration: none;
+    font-size: large;
     border: 0.1em;
     border-color: black;
-    border-radius: 0.2em;
+    
     cursor: pointer;
     border-style: solid;
+    margin-right: 3em;
 }
 
 #carrito {

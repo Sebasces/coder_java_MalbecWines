@@ -10,18 +10,18 @@
         <h3>${"el monto total a pagar por su compra es $"+ " "+ totalpago}</h3>
         <div id="tarjeta">
             <form id="formTarjeta">
-            <div class="form-group owner">
-            <label for="owner">Titular de la Tarjeta</label>
+            <div>
+            <label>Titular de la Tarjeta</label>
             <input type="text" class="form-control" id="titular">
         </div>
         <div>
-        <label for="owner">Correo electrónico</label>
-            <input type="text" class="form-control" id="correotitular">
+        <label>Correo electrónico</label>
+            <input type="text" class="form-control" id="correotitular"  required>
         </div>
 
         <div class="form-group CVV">
             <label for="cvv">Código de Seguridad</label>
-            <input type="text" class="form-control" id="cvv">
+            <input type="number" class="form-control" id="cvv">
         </div>
         <div class="form-group" id="card-number-field">
             <label for="cardNumber">Número de Tarjeta</label>
@@ -63,8 +63,8 @@
            
             
             
-            /*let titularTarjeta = document.getElementById("titularTarjeta")
-            let correoTitular = document.getElementById("correoTitular")
+            let titularTarjeta = document.getElementById("titular")
+            let correoTitular = document.getElementById("correotitular")
             let codigoSeguridad = document.getElementById("cvv")
             let numeroTarjeta = document.getElementById("numeroTarjeta")
             let expiracionMes = document.getElementById("mes")
@@ -77,8 +77,9 @@
             numero: numeroTarjeta.value,
             expiracionmes: expiracionMes.value,
             expiracionaño: expiracionAño.value, 
-            }*/
-
+            }
+            
+            
             function validarFormulario (e) {
             e.preventDefault ();
             const compraRealizada = document.createElement ("div")
@@ -96,7 +97,7 @@
             compraRealizada.style.color="black";
             compraRealizada.className = "CompraRealizadaMessage"
             compraRealizada.innerHTML =`
-            <h3>Hemos registrado su solicitud, en momentos recibira un e-mail de confirmación</h3>`; 
+            <h3>Hemos registrado su solicitud, procesado el pago  recibira un e-mail de confirmación</h3>`; 
             finalizarTransaccion.append(compraRealizada);
             
             const cerrarVentana = document.createElement("button")
@@ -106,6 +107,7 @@
             compraRealizada.style.display= "none";
             cerrarCompra.style.display="none"
             localStorage.clear()
+            localStorage.setItem ('datosTarjetaUser',JSON.stringify(datosTarjetaUser))
             window.location.href="./index.html"
             compraRealizada.append(cerrarVentana)
             })}
