@@ -10,13 +10,13 @@
         <h3>${"el monto total a pagar por su compra es $"+ " "+ totalpago}</h3>
         <div id="tarjeta">
             <form id="formTarjeta">
-            <div>
-            <label>Titular de la Tarjeta</label>
+            <div class="form-group owner">
+            <label for="owner">Titular de la Tarjeta</label>
             <input type="text" class="form-control" id="titular">
         </div>
         <div>
-        <label>Correo electrónico</label>
-            <input type="text" class="form-control" id="correotitular"  required>
+        <label for="owner">Correo electrónico</label>
+            <input type="text" class="form-control" id="correotitular">
         </div>
 
         <div class="form-group CVV">
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group" id="card-number-field">
             <label for="cardNumber">Número de Tarjeta</label>
-            <input type="text" class="form-control" id="numeroTarjeta">
+            <input type="number" class="form-control" id="numeroTarjeta">
         </div>
         <div class="form-group" id="expiration-date">
             <label>Mes de Expiración</label>
@@ -97,7 +97,7 @@
             compraRealizada.style.color="black";
             compraRealizada.className = "CompraRealizadaMessage"
             compraRealizada.innerHTML =`
-            <h3>Hemos registrado su solicitud, procesado el pago  recibira un e-mail de confirmación</h3>`; 
+            <h3>Hemos registrado su solicitud, procesado el pago en momentos recibira un e-mail de confirmación</h3>`; 
             finalizarTransaccion.append(compraRealizada);
             
             const cerrarVentana = document.createElement("button")
